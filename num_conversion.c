@@ -7,6 +7,11 @@
 void b_to_d();
 void b_to_o();
 void b_to_h();
+void d_to_b();
+void d_to_o();
+void d_to_h();
+int btod(int);
+int dtob(int);
 
 int main()
 {
@@ -27,15 +32,15 @@ int main()
     case 3:
         b_to_h();
         break;
-    // case 4:
-    //     d_to_b();
-    //     break;
-    // case 5:
-    //     d_to_o();
-    //     break;
-    // case 6:
-    //     d_to_h();
-    //     break;
+    case 4:
+        d_to_b();
+        break;
+    case 5:
+        d_to_o();
+        break;
+    case 6:
+        d_to_h();
+        break;
     // case 7:
     //     o_to_b();
     //     break;
@@ -129,4 +134,114 @@ void b_to_h()
         a = hexa[i - 1 - j];
         printf("%c", arr[a]);
     }
+}
+
+void d_to_b()
+{
+    int number;
+    int binum;
+    int temp;
+
+    printf("Enter a number :");
+    scanf("%d", &number);
+    temp = number;
+    int count = 0;
+    while (number > 0)
+    {
+        number /= 2;
+        count++;
+    }
+    // printf("%d",count);
+    // int *pnewNumber=malloc(count*4);
+    int newNumber[100] = {0};
+    for (int i = 0; i < count; i++)
+    {
+        if (number < 0)
+        {
+            break;
+        }
+        binum = temp % 2;
+        temp /= 2;
+        newNumber[i] = binum;
+    }
+    for (int i = 0; i < count; i++)
+    {
+        printf("%d", newNumber[(count - 1) - i]);
+    }
+}
+
+void d_to_o()
+{
+    int i = 0;
+    int decimal, rem, octa = 0;
+    printf("Enter Decimal Number:");
+    scanf("%d", &decimal);
+    while (decimal != 0)
+    {
+        rem = decimal % 8;
+        octa += rem * pow(10, i);
+        decimal /= 8;
+        i++;
+    }
+
+    printf("\nOctal = %d ", octa);
+}
+
+void d_to_h()
+{
+    int decimal;
+    int rem, a;
+    char arr[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    int hexa[50], i = 0;
+    printf("Enter Decimal Number:");
+    scanf("%d", &decimal);
+    printf("\nHexa-decimal = ");
+    while (decimal != 0)
+    {
+        rem = decimal % 16;
+        hexa[i++] = rem;
+        decimal /= 16;
+    }
+    for (int j = 0; j < i; j++)
+    {
+        a = hexa[i - 1 - j];
+        printf("%c", arr[a]);
+    }
+}
+
+int btod(int binary)
+{
+
+    int n, digit = 0, i = 0;
+    int decimal = 0;
+
+    n = binary;
+    while (n != 0)
+    {
+
+        digit = n % 10;
+        decimal += digit * pow(2, i);
+        i++;
+        n = n / 10;
+    }
+
+    return decimal;
+}
+int dtob(int n)
+{
+    int decimel;
+    int binary = 0;
+    int i = 0;
+    int temp;
+    decimel = n;
+    temp = decimel;
+    while (decimel != 0)
+    {
+        int new;
+        new = decimel % 2;
+        binary = binary + new * pow(10, i);
+        decimel /= 2;
+        i++;
+    }
+    return binary;
 }
