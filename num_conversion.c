@@ -2,6 +2,9 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
+#include <windows.h>
+#include <time.h>
+#include<ctype.h>
 
 
 void b_to_d();
@@ -10,8 +13,16 @@ void b_to_h();
 void d_to_b();
 void d_to_o();
 void d_to_h();
+void o_to_b();
+void o_to_d();
+void o_to_h();
+void h_to_b();
+void h_to_d();
+void h_to_o();
 int btod(int);
+int otod(int);
 int dtob(int);
+int htod(char[], int b);
 
 int main()
 {
@@ -41,24 +52,24 @@ int main()
     case 6:
         d_to_h();
         break;
-    // case 7:
-    //     o_to_b();
-    //     break;
-    // case 8:
-    //     o_to_d();
-    //     break;
-    // case 9:
-    //     o_to_h();
-    //     break;
-    // case 10:
-    //     h_to_b();
-    //     break;
-    // case 11:
-    //     h_to_d();
-    //     break;
-    // case 12:
-    //     h_to_o();
-    //     break;
+    case 7:
+        o_to_b();
+        break;
+    case 8:
+        o_to_d();
+        break;
+    case 9:
+        o_to_h();
+        break;
+    case 10:
+        h_to_b();
+        break;
+    case 11:
+        h_to_d();
+        break;
+    case 12:
+        h_to_o();
+        break;
     default:
         printf("--Enter correct option--");
         break;
@@ -227,6 +238,40 @@ int btod(int binary)
 
     return decimal;
 }
+void o_to_d()
+{
+    int octal;
+    int temp;
+    int decimal = 0, n, i = 0;
+    printf("Enter any octal number :");
+    scanf(" %d", &octal);
+    temp = octal;
+    while (octal != 0)
+    {
+        n = octal % 10;
+        decimal += n * pow(8, i);
+        octal /= 10;
+        i++;
+    }
+    printf("\nThe decimel value is : ");
+    printf("%d", decimal);
+}
+int otod(int new)
+{
+    int octal;
+    int temp;
+    int decimal = 0, n, i = 0;
+    octal = new;
+    temp = octal;
+    while (octal != 0)
+    {
+        n = octal % 10;
+        decimal += n * pow(8, i);
+        octal /= 10;
+        i++;
+    }
+    return decimal;
+}
 int dtob(int n)
 {
     int decimel;
@@ -244,4 +289,159 @@ int dtob(int n)
         i++;
     }
     return binary;
+}
+void o_to_b()
+{
+    int octal;
+    int binary;
+    printf("Enter an Octal Number :");
+    scanf(" %d", &octal);
+    int decimal;
+    decimal = otod(octal);
+    binary = dtob(decimal);
+
+    printf("The binary value is : %d ", binary);
+}
+void o_to_h()
+{
+    int octal;
+    int decimal;
+    char arr[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    int hexa[50];
+    int i = 0;
+
+    printf("Enter a octal number :");
+    scanf(" %d", &octal);
+    decimal = otod(octal);
+    while (decimal != 0)
+    {
+        int temp;
+        temp = decimal % 16;
+        hexa[i] = temp;
+        decimal /= 16;
+        i++;
+    }
+    for (int j = 0; j < i; j++)
+    {
+        printf("%c", arr[hexa[i - 1 - j]]);
+    }
+}
+void h_to_d()
+{
+    char hexa[100] = "";
+    int a;
+    int x = 0;
+    int decimal = 0;
+    int temp;
+    printf("Enter Any hexa-decimal number :");
+
+    getchar();
+    fgets(hexa, sizeof(hexa), stdin);
+    hexa[strlen(hexa) - 1] = '\0';
+
+    a = strlen(hexa) - 1;
+    for (int i = 0; i < a + 1; i++)
+    {
+        hexa[i] = toupper(hexa[i]);
+    }
+    // printf("%s",hexa);
+    int temp2 = a;
+    char arr[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+
+    for (int i = 0; i <= a ; i++)
+    {
+        for (int j = 0; j < 16; j++)
+        {
+
+            if (hexa[x] == arr[j])
+            {
+                temp = j;
+                decimal += temp * pow(16, temp2);
+                temp2 -= 1;
+                x++;
+            }
+        }
+    }
+    printf("decimal=%d", decimal);
+}
+int htod(char n[], int b)
+{
+    char hexa[100] = "";
+    int a;
+    int x = 0;
+    int decimal = 0;
+    int temp;
+    for (int i = 0; i < b; i++)
+    {
+        hexa[i] = n[i];
+    }
+
+    hexa[strlen(hexa) - 1] = '\0';
+
+    a = strlen(hexa) - 1;
+    int temp2 = a;
+    char arr[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+
+    for (int i = 0; i <= a + 1; i++)
+    {
+        for (int j = 0; j < 16; j++)
+        {
+
+            if (hexa[x] == arr[j])
+            {
+                temp = j;
+                decimal += temp * pow(16, temp2);
+                temp2 -= 1;
+                x++;
+            }
+        }
+    }
+    return decimal;
+}
+void h_to_b()
+{
+    char hexa[100] = "";
+
+    printf("Enter any hexa-decimal number :");
+    getchar();
+    fgets(hexa, sizeof(hexa), stdin);
+    int a = strlen(hexa);
+    for (int i = 0; i < a; i++)
+    {
+        hexa[i] = toupper(hexa[i]); // case insensitive upgrade
+    }
+    // char *phexa=hexa;
+    int decimal;
+    int binary;
+    decimal = htod(hexa, a);
+    // printf("%d\n",decimal);
+    binary = dtob(decimal);
+    printf("The Binary Answer is = %d", binary);
+}
+void h_to_o()
+{
+    char hexa[100] = "";
+    int decimal;
+    int octal = 0;
+    printf("Enter a Hexa-decimal number :");
+    getchar();
+    fgets(hexa, sizeof(hexa), stdin);
+    int a;
+    a = strlen(hexa);
+    for (int i = 0; i < a; i++)
+    {
+        hexa[i] = toupper(hexa[i]); // case insensitive upgrade
+    }
+
+    decimal = htod(hexa, a);
+    int i = 0;
+    int temp;
+    while (decimal != 0)
+    {
+        temp = decimal % 8;
+        octal += temp * pow(10, i);
+        decimal /= 8;
+        i++;
+    }
+    printf("\nOctal= %d", octal);
 }
