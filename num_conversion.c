@@ -2,8 +2,6 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
-#include <windows.h>
-#include <time.h>
 #include<ctype.h>
 
 
@@ -162,8 +160,7 @@ void d_to_b()
         number /= 2;
         count++;
     }
-    // printf("%d",count);
-    // int *pnewNumber=malloc(count*4);
+    
     int newNumber[100] = {0};
     for (int i = 0; i < count; i++)
     {
@@ -344,7 +341,7 @@ void h_to_d()
     {
         hexa[i] = toupper(hexa[i]);
     }
-    // printf("%s",hexa);
+    
     int temp2 = a;
     char arr[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
@@ -410,11 +407,11 @@ void h_to_b()
     {
         hexa[i] = toupper(hexa[i]); // case insensitive upgrade
     }
-    // char *phexa=hexa;
+   
     int decimal;
     int binary;
     decimal = htod(hexa, a);
-    // printf("%d\n",decimal);
+    
     binary = dtob(decimal);
     printf("The Binary Answer is = %d", binary);
 }
