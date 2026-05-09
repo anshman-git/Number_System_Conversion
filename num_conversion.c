@@ -2,9 +2,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
-#include<ctype.h>
-
-
+#include <ctype.h>
 void b_to_d();
 void b_to_o();
 void b_to_h();
@@ -24,55 +22,58 @@ int htod(char[], int b);
 
 int main()
 {
-    int choice;
-    printf("\n\t\tBinary Convertor\t\t\n");
-    printf("1.Binary to Decimal\n2.Binary to Octal\n3.Binary to Hexa-decimal\n\n4.Decimal to Binary\n5.Decimal to Octal\n6.Decimal to Hexa-decimal\n");
-    printf("\n7.Octal to Binary\n8.Octal to Decimal\n9.Octal to Hexa-decimal\n\n10.Hexa-decimal to Binary\n11.Hexa-decimal to Decimal\n12.Hexa-decimal to Octal");
-    printf("\nEnter your Choice : ");
-    scanf("%d", &choice);
-    switch (choice)
+    int choice = -1;
+    while (choice != 0)
     {
-    case 1:
-        b_to_d();
-        break;
-    case 2:
-        b_to_o();
-        break;
-    case 3:
-        b_to_h();
-        break;
-    case 4:
-        d_to_b();
-        break;
-    case 5:
-        d_to_o();
-        break;
-    case 6:
-        d_to_h();
-        break;
-    case 7:
-        o_to_b();
-        break;
-    case 8:
-        o_to_d();
-        break;
-    case 9:
-        o_to_h();
-        break;
-    case 10:
-        h_to_b();
-        break;
-    case 11:
-        h_to_d();
-        break;
-    case 12:
-        h_to_o();
-        break;
-    default:
-        printf("--Enter correct option--");
-        break;
+        printf("\n\t\tNumber System Convertor\t\t\n");
+        printf("1.Binary to Decimal\n2.Binary to Octal\n3.Binary to Hexa-decimal\n\n4.Decimal to Binary\n5.Decimal to Octal\n6.Decimal to Hexa-decimal\n");
+        printf("\n7.Octal to Binary\n8.Octal to Decimal\n9.Octal to Hexa-decimal\n\n10.Hexa-decimal to Binary\n11.Hexa-decimal to Decimal\n12.Hexa-decimal to Octal");
+        printf("\n-Press 0 or other to exit!!-");
+        printf("\nEnter your Choice : ");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            b_to_d();
+            break;
+        case 2:
+            b_to_o();
+            break;
+        case 3:
+            b_to_h();
+            break;
+        case 4:
+            d_to_b();
+            break;
+        case 5:
+            d_to_o();
+            break;
+        case 6:
+            d_to_h();
+            break;
+        case 7:
+            o_to_b();
+            break;
+        case 8:
+            o_to_d();
+            break;
+        case 9:
+            o_to_h();
+            break;
+        case 10:
+            h_to_b();
+            break;
+        case 11:
+            h_to_d();
+            break;
+        case 12:
+            h_to_o();
+            break;
+        default:
+            printf("Thank You!!");
+            break;
+        }
     }
-
     return 0;
 }
 void b_to_d()
@@ -157,7 +158,7 @@ void d_to_b()
         number /= 2;
         count++;
     }
-    
+
     int newNumber[100] = {0};
     for (int i = 0; i < count; i++)
     {
@@ -235,7 +236,6 @@ void o_to_d()
     int decimal = 0, n, i = 0;
     printf("Enter any octal number :");
     scanf(" %d", &octal);
-    temp = octal;
     while (octal != 0)
     {
         n = octal % 10;
@@ -332,11 +332,11 @@ void h_to_d()
     {
         hexa[i] = toupper(hexa[i]);
     }
-    
+
     int temp2 = a;
     char arr[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
-    for (int i = 0; i <= a ; i++)
+    for (int i = 0; i <= a; i++)
     {
         for (int j = 0; j < 16; j++)
         {
@@ -398,11 +398,11 @@ void h_to_b()
     {
         hexa[i] = toupper(hexa[i]); // case insensitive upgrade
     }
-   
+
     int decimal;
     int binary;
     decimal = htod(hexa, a);
-    
+
     binary = dtob(decimal);
     printf("The Binary Answer is = %d", binary);
 }
