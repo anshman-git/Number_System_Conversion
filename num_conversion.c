@@ -75,7 +75,6 @@ int main()
 
     return 0;
 }
-
 void b_to_d()
 {
     int binary;
@@ -96,7 +95,7 @@ void b_to_d()
 void b_to_o()
 {
     int binary;
-    int n, rem, i = 0;
+    int rem, i = 0;
     int octa = 0;
     int decimal;
 
@@ -117,7 +116,6 @@ void b_to_o()
 
     printf("\nOctal = %d ", octa);
 }
-
 void b_to_h()
 {
     int binary;
@@ -144,7 +142,6 @@ void b_to_h()
         printf("%c", arr[a]);
     }
 }
-
 void d_to_b()
 {
     int number;
@@ -177,7 +174,6 @@ void d_to_b()
         printf("%d", newNumber[(count - 1) - i]);
     }
 }
-
 void d_to_o()
 {
     int i = 0;
@@ -194,7 +190,6 @@ void d_to_o()
 
     printf("\nOctal = %d ", octa);
 }
-
 void d_to_h()
 {
     int decimal;
@@ -216,7 +211,6 @@ void d_to_h()
         printf("%c", arr[a]);
     }
 }
-
 int btod(int binary)
 {
 
@@ -238,7 +232,6 @@ int btod(int binary)
 void o_to_d()
 {
     int octal;
-    int temp;
     int decimal = 0, n, i = 0;
     printf("Enter any octal number :");
     scanf(" %d", &octal);
@@ -256,10 +249,8 @@ void o_to_d()
 int otod(int new)
 {
     int octal;
-    int temp;
     int decimal = 0, n, i = 0;
     octal = new;
-    temp = octal;
     while (octal != 0)
     {
         n = octal % 10;
